@@ -1,7 +1,7 @@
-package souvik.lvltwo.linkedListTwo.swapTwoNodes;
+package souvik.lvltwo.linkedListTwo.bubbleSort;
 
 public class Solution {
-
+	
 	public static LinkedListNode<Integer> swapNodes(LinkedListNode<Integer> head, int I, int J) {
 		
 		if(head == null || I == J) {
@@ -86,6 +86,42 @@ public class Solution {
 			nodeJ.next = nodeI.next;
 			nodePrevJ.next = nodeI;
 			nodeI.next = nodeJnext;
+		}
+		
+		return head;
+	}
+	
+	public static int length(LinkedListNode<Integer> head){
+		int c = 0;
+		while(head != null) {
+			head = head.next;
+			c++;
+		}
+		return c;
+	}
+
+	public static LinkedListNode<Integer> bubbleSort(LinkedListNode<Integer> head) {
+		
+		LinkedListNode<Integer> temp = head;
+		int idxI = 0, idxJ = 0, n = length(head);		
+		
+		if(n == 0 || n == 1) {
+			return head;
+		}
+		
+		while(idxI < n - 1) {			
+			while(idxJ < n - idxI - 1) {				
+				if(temp.data > temp.next.data) {
+					head = swapNodes(head, idxJ, idxJ + 1);
+				}
+				else {
+					temp = temp.next;					
+				}
+				idxJ++;
+			}
+			idxJ = 0;
+			temp = head;
+			idxI++;
 		}
 		
 		return head;
